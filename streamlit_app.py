@@ -4,10 +4,9 @@ import numpy as np
 import pandas as pd
 import altair as alt
 import streamlit as st
-import openpyxl
 
 
-file = pd.read_excel(r'./FFA 场景定义 template 20230504.xlsx', sheet_name='Tractor-1')
+file = pd.read_excel(r'./FFA 场景定义 template 20230504.xlsx', sheet_name='Tractor-1', engine='openpyxl')
 columnsName = list(file)
 output = pd.DataFrame(columns=columnsName)
 
@@ -17,9 +16,9 @@ st.subheader('CCI CE')
 # Silder
 with st.sidebar:
   st.header('Application')
-  lev1 = st.selectbox(label=columnsName[0], options = file[columnsName[0]].dropna()) 
-  lev2 = st.selectbox(label=columnsName[1], options = file[columnsName[1]].dropna()) 
-  lev3 = st.selectbox(label=columnsName[2], options = file[columnsName[2]].dropna()) 
+  lev1 = st.selectbox(label='一级细分市场', options = ['N3-Tractor']) 
+  lev2 = st.selectbox(label='二级细分市场', options = ['长途车辆']) 
+  lev3 = st.selectbox(label='三级细分市场', options = ['零担', '沙石料']) 
 
 st.empty()
 col1, col2 = st.columns(2)
