@@ -36,6 +36,7 @@ specLeg = st.radio(label='特殊法规', options=['排放', '油耗', '限速', 
 
 st.write(f'输出文件行数为: {len(climate)*len(road)*len(landform)*len(grade)*len(sit)}')
 
+output = pd.DataFrame(columns=['一级细分市场',	'二级细分市场',	'三级细分市场',	'气候特征',	'道路/地形', '地貌特征',	'坡度',	'载重',	'特殊环境',	'特殊法规',	'关注度',	'细分工况'])
 
 for temp_climate in climate:
   for temp_road in road:
@@ -58,14 +59,13 @@ def convert_df(df):
 
 csv = convert_df(output)
 
-if len(output)>1:
-  st.download_button(
-      label="Download data",
-      data=csv,
-      file_name='VOC Collection Table.csv',
-      mime='text/csv',
+st.download_button(
+    label="Download data",
+    data=csv,
+    file_name='VOC Collection Table.csv',
+    mime='text/csv',
 
-  )
+)
 
 
 # if st.button('Download'):
