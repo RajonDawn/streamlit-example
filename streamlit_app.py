@@ -5,7 +5,7 @@ import pandas as pd
 import altair as alt
 import streamlit as st
 from io import BytesIO
-from pyxlsb import open_workbook as open_xlsb
+# from pyxlsb import open_workbook as open_xlsb
 
 
 st.header('FFA VOC Collection Template')
