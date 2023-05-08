@@ -55,7 +55,7 @@ for temp_climate in climate:
 
 def convert_df(df):
     # IMPORTANT: Cache the conversion to prevent computation on every rerun
-    return df.to_csv()
+    return df.to_csv(index=False, encoding='utf-8)
 
 csv = convert_df(output)
 
