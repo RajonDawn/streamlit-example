@@ -4,6 +4,7 @@ import numpy as np
 import pandas as pd
 import altair as alt
 import streamlit as st
+import openpyxl
 
 
 file = pd.read_excel(r'./FFA 场景定义 template 20230504.xlsx', sheet_name='Tractor-1')
