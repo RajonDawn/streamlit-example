@@ -31,8 +31,8 @@ with col2:
 l1 = ['怠速', '起步', '低速跟车', '超车', '稳定车速行驶（30,40,50,60,70,80,90km/h)', '倒车', '空挡滑行', '带档滑行', '巡航', '加速', '换挡', '制动', '怠速+开空调', '熄火']
 sit = st.multiselect(label='细分工况', options = l1, default=l1) 
 
-specEnv = st.radio(label='特殊环境', options=file['特殊环境'].dropna(), horizontal=True)
-specLeg = st.radio(label='特殊法规', options=file['特殊法规'].dropna(), horizontal=True)
+specEnv = st.radio(label='特殊环境', options=[], horizontal=True)
+specLeg = st.radio(label='特殊法规', options=['排放', '油耗', '限速', '限重', '噪声'], horizontal=True)
 
 st.write(f'输出文件行数为: {len(climate)*len(road)*len(landform)*len(grade)*len(sit)}')
 
@@ -58,11 +58,10 @@ def convert_df(df):
 
 csv = convert_df(output)
 
-
 st.download_button(
     label="Download data",
     data=csv,
-    file_name='large_df.csv',
+    file_name='VOC Collection Table.csv',
     mime='text/csv',
 
 )
