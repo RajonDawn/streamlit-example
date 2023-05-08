@@ -5,11 +5,6 @@ import pandas as pd
 import altair as alt
 import streamlit as st
 
-
-file = pd.read_excel(r'./FFA 场景定义 template 20230504.xlsx', sheet_name='Tractor-1', engine='openpyxl')
-columnsName = list(file)
-output = pd.DataFrame(columns=columnsName)
-
 st.header('FFA VOC Collection Template')
 st.subheader('CCI CE')
 
@@ -23,17 +18,18 @@ with st.sidebar:
 st.empty()
 col1, col2 = st.columns(2)
 with col1:
-  climate = st.multiselect(label=columnsName[3], options = file[columnsName[3]].dropna()) 
+  climate = st.multiselect(label='气候特征', options = ['高温', '高寒']) 
   st.image('./images/climate.jpg', use_column_width='always')
-  road = st.multiselect(label=columnsName[4], options = file[columnsName[4]].dropna()) 
+  road = st.multiselect(label='道路/地形', options = ['高速', '国道', '城市', '非铺路面']) 
   st.image('./images/road.jpg', use_column_width='always')
 with col2:
-  landform = st.multiselect(label=columnsName[5], options = file[columnsName[5]].dropna()) 
+  landform = st.multiselect(label='地貌特征', options = ['平原', '丘陵', '山区', '高原']) 
   st.image('./images/landform.jpg', use_column_width='always')
-  grade = st.multiselect(label=columnsName[6], options = file[columnsName[6]].dropna()) 
+  grade = st.multiselect(label='坡度', options = ['上坡', '下坡', '平路']) 
   st.image('./images/grade.jpg', use_column_width='always')
 
-sit = st.multiselect(label='细分工况', options = file['细分工况'].dropna(), default=file['细分工况'].dropna()) 
+l1 = ['怠速', '起步', '低速跟车', '超车', '稳定车速行驶（30,40,50,60,70,80,90km/h)', '倒车', '空挡滑行', '带档滑行', '巡航', '加速', '换挡', '制动', '怠速+开空调', '熄火']
+sit = st.multiselect(label='细分工况', options = l1, default=l1) 
 
 specEnv = st.radio(label='特殊环境', options=file['特殊环境'].dropna(), horizontal=True)
 specLeg = st.radio(label='特殊法规', options=file['特殊法规'].dropna(), horizontal=True)
