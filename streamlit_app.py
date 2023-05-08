@@ -58,13 +58,14 @@ def convert_df(df):
 
 csv = convert_df(output)
 
-st.download_button(
-    label="Download data",
-    data=csv,
-    file_name='VOC Collection Table.csv',
-    mime='text/csv',
+if len(output)>1:
+  st.download_button(
+      label="Download data",
+      data=csv,
+      file_name='VOC Collection Table.csv',
+      mime='text/csv',
 
-)
+  )
 
 
 # if st.button('Download'):
