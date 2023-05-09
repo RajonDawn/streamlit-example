@@ -84,4 +84,7 @@ def fileGen(specAtt, climate, road, landform, grade, specEnv, specWei, specLeg, 
 
 if st.download_button('📥下载VOC表格', data=fileGen(specAtt, climate, road, landform, grade, specEnv, specWei, specLeg, sit).to_csv(index=False).encode('utf_8_sig'),file_name='VOC Collection Table.csv',mime='text/csv'):
   st.balloons()
-  st.success( lev1 +' - '+ lev2 +' - ' + lev3 + '- voc collection table completed!', icon="✅")
+  if lev3:
+    st.success( lev1 +' - '+ lev2 +' - ' + lev3 + '- voc collection table completed!', icon="✅")
+  else:
+    st.success( lev1 +' - '+ lev2 + '- voc collection table completed!', icon="✅")
