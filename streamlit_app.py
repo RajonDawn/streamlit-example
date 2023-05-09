@@ -1,21 +1,28 @@
 import pandas as pd
 import streamlit as st
 from io import BytesIO
+from io import StringIO
 
 
+
+
+    
 # @st.cache_resource
 # def init_data():
 dataSet = pd.read_excel('./FFA场景定义 template 20230508.xlsx', sheet_name=None)
-sheetNames = list(dataSet)
-  # return dataSet, sheetNames
 
-# init_data()
 st.header('FFA VOC Collection Template')
 st.subheader('CCI CE')
 
 # Silder
-
 with st.sidebar:
+  uploaded_file = st.file_uploader("请上传FFA模板文件", accept_multiple_files=False )
+
+  if uploaded_file is not None:
+    # Can be used wherever a "file-like" object is accepted:
+    dataSet = pd.read_excel(uploaded_file, sheet_name=None)
+  sheetNames = list(dataSet)
+
   st.header('Application')
   lev0 = st.selectbox(label='数据表名', options=sheetNames)
   tempSheet = dataSet[lev0]
@@ -49,7 +56,7 @@ for i in [climate, road, landform, grade, sit, specEnv, specWei, specLeg, specAt
   else:
     i.append('')
     rows = rows * 1
-st.write(f'输出组合种类数量为: {rows}')
+st.write(f'输出组合数量为: {rows}')
 
 @st.cache_data
 def fileGen(specAtt, climate, road, landform, grade, specEnv, specWei, specLeg, sit):
