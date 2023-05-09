@@ -41,6 +41,7 @@ for i in [climate, road, landform, grade, sit, specWei, specLeg, specAtt]:
   if len(i)>=1:
     rows = rows * len(i)
   else:
+    i.append('')
     rows = rows * 1
 st.write(f'输出文件行数为: {rows}')
 
