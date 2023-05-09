@@ -3,21 +3,13 @@ import streamlit as st
 from io import BytesIO
 from io import StringIO
 
-
-
-
-    
-# @st.cache_resource
-# def init_data():
 dataSet = pd.read_excel('./FFA场景定义 template 20230508.xlsx', sheet_name=None)
-
 st.header('FFA VOC Collection Template')
 st.subheader('CCI CE')
 
 # Silder
 with st.sidebar:
-  uploaded_file = st.file_uploader("请上传FFA模板文件", accept_multiple_files=False )
-
+  uploaded_file = st.file_uploader("请上传FFA模板文件", accept_multiple_files=False)
   if uploaded_file is not None:
     # Can be used wherever a "file-like" object is accepted:
     dataSet = pd.read_excel(uploaded_file, sheet_name=None)
@@ -49,6 +41,7 @@ specEnv = st.multiselect(label='特殊环境', options=tempSheet['特殊环境']
 specWei = st.multiselect(label='载重', options = tempSheet['载重'].dropna())
 specLeg = st.multiselect(label='特殊法规', options = tempSheet['特殊法规'].dropna())
 specAtt = st.multiselect(label='关注度', options = tempSheet['关注度'].dropna())
+
 rows = 1
 for i in [climate, road, landform, grade, sit, specEnv, specWei, specLeg, specAtt]:
   if len(i)>=1:
@@ -84,10 +77,7 @@ def fileGen(specAtt, climate, road, landform, grade, specEnv, specWei, specLeg, 
                                             '特殊法规': [leg],
                                             '细分工况': [temp_sit]      })
                       output = pd.concat([output,temp])
-
-
   return output
-
 
 if st.download_button('📥下载VOC表格', data=fileGen(specAtt, climate, road, landform, grade, specEnv, specWei, specLeg, sit).to_csv(index=False).encode('utf_8_sig'),file_name='VOC Collection Table.csv',mime='text/csv'):
   st.balloons()
