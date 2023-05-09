@@ -29,15 +29,22 @@ l1 = ['怠速', '起步', '低速跟车', '超车', '稳定车速行驶（30,40,
 sit = st.multiselect(label='细分工况', options = l1, default=l1) 
 
 specEnv = st.radio(label='特殊环境', options=[], horizontal=True)
-# specLeg = st.radio(label='特殊法规', options=['排放', '油耗', '限速', '限重', '噪声'], horizontal=True)
+
+st.text('载重')
+col11, col21, col31 = st.columns(3)
+specwei_1 = col11.checkbox('空载')
+specwei_2 = col21.checkbox('满载')
+specwei_3 = col31.checkbox('半载')
+variables1 = specwei_1 + specwei_2 + specwei_3
+
 st.text('特殊法规')
 col11, col21, col31, col41, col51 = st.columns(5)
-specLeg_d = col11.checkbox('排放')
-specLeg_e = col21.checkbox('油耗')
-specLeg_v = col31.checkbox('限速')
-specLeg_w = col41.checkbox('限重')
-specLeg_n = col51.checkbox('噪声')
-variables1 = specLeg_d + specLeg_e + specLeg_v + specLeg_w + specLeg_n
+specLeg_1 = col11.checkbox('排放')
+specLeg_2 = col21.checkbox('油耗')
+specLeg_3 = col31.checkbox('限速')
+specLeg_4 = col41.checkbox('限重')
+specLeg_5 = col51.checkbox('噪声')
+variables2 = specLeg_1 + specLeg_2 + specLeg_3 + specLeg_4 + specLeg_5
 
 
 st.text('关注度')
@@ -48,12 +55,9 @@ specenv_3 = col31.checkbox('经济性')
 specenv_4 = col41.checkbox('舒适度')
 specenv_5 = col51.checkbox('安全性')
 specenv_6 = col61.checkbox('通过性')
+variables3 = specenv_1 + specenv_2 + specenv_3 + specenv_4 + specenv_5 + specenv_6
 
-variables2 = specenv_1 + specenv_2 + specenv_3 + specenv_4 + specenv_5 + specenv_6
-
-# attention = st.radio(label='关注度', options=['可靠性', '动力性', '经济性', '舒适度', '安全性', '通过性'], horizontal=True)
-
-st.write(f'输出文件行数为: {len(climate)*len(road)*len(landform)*len(grade)*len(sit)*variables1 * variables2}')
+st.write(f'输出文件行数为: {len(climate)*len(road)*len(landform)*len(grade)*len(sit)*variables1*variables2*variables3}')
 
 output = pd.DataFrame(columns=['一级细分市场',	'二级细分市场',	'三级细分市场',	'气候特征',	'道路/地形', '地貌特征',	'坡度',	'载重',	'特殊环境',	'特殊法规',	'关注度',	'细分工况'])
 
