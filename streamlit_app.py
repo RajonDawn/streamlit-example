@@ -96,12 +96,15 @@ def convert_df(df):
     # IMPORTANT: Cache the conversion to prevent computation on every rerun
     return df.to_csv(index=False, encoding='gbk')
 
-st.download_button(
-    label="Download data",
-    data=convert_df(output),
-    file_name='VOC Collection Table.csv',
-    mime='text/csv',
-)
+  
+st.download_button('下载VOC表格', data=output.to_csv(index=False).encode('utf-8'),file_name='file.csv',mime='text/csv')
+
+# st.download_button(
+#     label="Download data",
+#     data=convert_df(output),
+#     file_name='VOC Collection Table.csv',
+#     mime='text/csv',
+# )
 
 
 # if st.button('Download'):
