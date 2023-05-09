@@ -97,7 +97,7 @@ def convert_df(df):
     return df.to_csv(index=False, encoding='gbk')
 
   
-st.download_button('下载VOC表格', data=output.to_csv(index=False).encode('utf-8'),file_name='file.csv',mime='text/csv')
+st.download_button('下载VOC表格', data=output.to_csv(index=False).encode('utf_8_sig'),file_name='file.csv',mime='text/csv')
 
 # st.download_button(
 #     label="Download data",
