@@ -16,14 +16,14 @@ st.empty()
 col1, col2 = st.columns(2)
 with col1:
   climate = st.multiselect(label='气候特征', options = ['高温', '高寒']) 
-  st.image('./images/climate.jpg', use_column_width='always')
+  st.image('./climate.jpg', use_column_width='always')
   road = st.multiselect(label='道路/地形', options = ['高速', '国道', '城市', '非铺路面']) 
-  st.image('./images/road.jpg', use_column_width='always')
+  st.image('./road.jpg', use_column_width='always')
 with col2:
   landform = st.multiselect(label='地貌特征', options = ['平原', '丘陵', '山区', '高原']) 
-  st.image('./images/landform.jpg', use_column_width='always')
+  st.image('./landform.jpg', use_column_width='always')
   grade = st.multiselect(label='坡度', options = ['上坡', '下坡', '平路']) 
-  st.image('./images/grade.jpg', use_column_width='always')
+  st.image('./grade.jpg', use_column_width='always')
 
 l1 = ['怠速', '起步', '低速跟车', '超车', '稳定车速行驶（30,40,50,60,70,80,90km/h)', '倒车', '空挡滑行', '带档滑行', '巡航', '加速', '换挡', '制动', '怠速+开空调', '熄火']
 sit = st.multiselect(label='细分工况', options = l1, default=l1) 
