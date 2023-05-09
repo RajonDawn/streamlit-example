@@ -72,36 +72,35 @@ for temp_climate in climate:
                                 '细分工况': [temp_sit]      })
           output = pd.concat([output,temp])
 
-def convert_df(df):
-    # IMPORTANT: Cache the conversion to prevent computation on every rerun
-    return df.to_csv(index=False, encoding='gbk')
-
-csv = convert_df(output)
 
 
 
-# def to_excel(df):
-#     output = BytesIO()
-#     writer = pd.ExcelWriter(output, engine='xlsxwriter')
-#     df.to_excel(writer, index=False, sheet_name='Sheet1')
-#     workbook = writer.book
-#     worksheet = writer.sheets['Sheet1']
-#     format1 = workbook.add_format({'num_format': '0.00'}) 
-#     worksheet.set_column('A:A', None, format1)  
-#     writer.save()
-#     processed_data = output.getvalue()
-#     return processed_data
+
+def to_excel(df):
+    output = BytesIO()
+    writer = pd.ExcelWriter(output, engine='xlsxwriter')
+    df.to_excel(writer, index=False, sheet_name='Sheet1')
+    workbook = writer.book
+    worksheet = writer.sheets['Sheet1']
+    format1 = workbook.add_format({'num_format': '0.00'}) 
+    worksheet.set_column('A:A', None, format1)  
+    writer.save()
+    processed_data = output.getvalue()
+    return processed_data
   
 st.download_button(label='📥 Download Current Result',
-                                data=convert_df(output) ,
-                                file_name= 'VOC Collection Table.csv')
+                                data=to_excel(output) ,
+                                file_name= 'VOC Collection Table.xlsx')
 
+def convert_df(df):
+    # IMPORTANT: Cache the conversion to prevent computation on every rerun
+    return df.to_csv(index=False, encoding='utf-8')
 
-# st.download_button(
-#     label="Download data",
-#     data=csv,
-#     file_name='VOC Collection Table.csv',
-#     mime='text/csv',
+st.download_button(
+    label="Download data",
+    data=convert_df(output),
+    file_name='VOC Collection Table.csv',
+    mime='text/csv',
 
 # )
 
