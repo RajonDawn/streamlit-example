@@ -16,7 +16,7 @@ with st.sidebar:
   sheetNames = list(dataSet)
 
   st.header('Application')
-  lev0 = st.selectbox(label='应用', options=sheetNames)
+  lev0 = st.selectbox(label='FFA项目', options=sheetNames)
   tempSheet = dataSet[lev0]
   lev1 = st.selectbox(label='一级细分市场', options = tempSheet.iloc[:, 0].dropna()) 
   lev2 = st.selectbox(label='二级细分市场', options = tempSheet.iloc[:, 1].dropna()) 
