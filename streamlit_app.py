@@ -23,7 +23,7 @@ with st.sidebar:
 
   if uploaded_file is not None:
     # Can be used wherever a "file-like" object is accepted:
-    dataSet = init_data(uploaded_file, sheet_name=None)
+    dataSet = init_data(uploaded_file)
   sheetNames = list(dataSet)
 
   st.header('Application')
