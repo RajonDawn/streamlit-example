@@ -38,14 +38,14 @@ st.empty()
 col1, col2 = st.columns(2)
 with col1:
   climate = st.multiselect(label='气候特征', options = tempSheet['气候特征'].dropna()) 
-  st.image('./images/climate.jpg', use_column_width='always')
+  st.image('./climate.jpg', use_column_width='always')
   road = st.multiselect(label='道路/地形', options = tempSheet['道路/地形'].dropna()) 
-  st.image('./images/road.jpg', use_column_width='always')
+  st.image('./road.jpg', use_column_width='always')
 with col2:
   landform = st.multiselect(label='地貌特征', options = tempSheet['地貌特征'].dropna()) 
-  st.image('./images/landform.jpg', use_column_width='always')
+  st.image('./landform.jpg', use_column_width='always')
   grade = st.multiselect(label='坡度', options = tempSheet['坡度'].dropna()) 
-  st.image('./images/grade.jpg', use_column_width='always')
+  st.image('./grade.jpg', use_column_width='always')
 sit = st.multiselect(label='细分工况', options = tempSheet['细分工况'].dropna(), default=tempSheet['细分工况'].dropna()) 
 
 specEnv = st.multiselect(label='特殊环境', options=tempSheet['特殊环境'].dropna())
